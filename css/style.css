@@ -1,0 +1,158 @@
+#body1 {
+  background-image: url("../images/backs.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#body2 {
+  background-image: url("../images/connect-four.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container {
+  display: block;
+  margin: 450px auto;
+}
+
+table {
+  padding: 10px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #b2ecff;
+  border: 1px solid #1c1c1c;
+}
+
+#board {
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+#board tr {
+  margin: 10px;
+  width: 120px;
+  height: 120px;
+}
+
+#board tr td {
+  padding: 10px;
+  width: 100px;
+  height: 100px;
+  font-family: Helvetica;
+  font-size: 30px;
+  text-align: center;
+  background: white;
+  border-radius: 50%;
+}
+
+.active {
+  background-color: "gray";
+}
+
+.col0:hover::after {
+  background-color: #ffa;
+}
+
+.yellow {
+  background: yellow !important;
+}
+
+.red {
+  background: red !important;
+}
+
+#scores {
+  width: 500px;
+  background-color: blue;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+
+  text-decoration: none;
+  color: initial;
+}
+
+#back {
+  /*
+  display: static;
+  font-family: Helvetica;
+  font-size: 30px;
+  text-align: center;
+  margin: 20px auto;
+  background-color: red;
+  width: 350px;*/
+
+  display: static;
+  font-family: Helvetica;
+  font-size: 30px;
+  text-align: center;
+  /*margin: 20px auto;*/
+  margin: 50px;
+  background-color: #ffae5e;
+  width: 300px;
+}
+
+#buttons {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#buttons1 {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin: 100px auto;
+}
+
+#reset {
+  display: static;
+  font-family: Helvetica;
+  font-size: 30px;
+  text-align: center;
+  /*margin: 20px auto;*/
+  margin: 50px;
+  background-color: #ffae5e;
+  width: 300px;
+}
+
+#op {
+  font-family: Helvetica;
+  font-size: 30px;
+  text-align: center;
+  margin: 20px auto;
+  color: white;
+  background-color: red;
+  width: 350px;
+}
+
+.op1 {
+  display: block;
+  font-family: Helvetica;
+  font-size: 50px;
+  text-align: center;
+  margin: 50px auto;
+  color: white;
+  background-color: green;
+  width: 700px;
+  height: 200px;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Connect Four</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/proj2.js"></script>
+  </head>
+
+  <body id="body2">
+    <div class="container">
+      <div id="buttons1">
+        <form action="games.html">
+          <input type="submit" class="op1" value="PLAY Against the Computer" />
+        </form>
+
+        <form action="games.html">
+          <input type="hidden" name="twoPlayer" value="true" />
+          <input
+            type="submit"
+            class="op1"
+            onclick="formsub()"
+            value="PLAY With a Friend"
+          />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
