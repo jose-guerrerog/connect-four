@@ -29,6 +29,7 @@ table {
 }
 
 #board {
+  cursor: pointer;
   padding: 10px;
   margin: 0 auto;
   margin-top: 25px;
@@ -125,6 +126,7 @@ h2 {
 }
 
 #reset {
+  cursor: pointer;
   display: static;
   font-family: Helvetica;
   font-size: 30px;
@@ -132,17 +134,30 @@ h2 {
   /*margin: 20px auto;*/
   margin: 50px;
   background-color: #ffae5e;
-  width: 300px;
+  width: 280px;
+  height: 60px;
+  border-radius: 16px;
+}
+
+#reset:hover {
+  background-color: #ffcc80;
 }
 
 #op {
+  cursor: pointer;
   font-family: Helvetica;
   font-size: 30px;
   text-align: center;
   margin: 20px auto;
   color: white;
   background-color: red;
-  width: 350px;
+  width: 280px;
+  height: 60px;
+  border-radius: 16px;
+}
+
+#op:hover {
+  background-color: #f94449;
 }
 
 .op1 {
@@ -155,4 +170,10 @@ h2 {
   background-color: green;
   width: 700px;
   height: 200px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.op1:hover {
+  background-color: #8ebb1b;
 }
