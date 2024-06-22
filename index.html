@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <title>Connect Four</title>
@@ -7,24 +6,66 @@
     <script src="js/jquery.js"></script>
     <script src="js/proj2.js"></script>
   </head>
+  <body id="body1">
+    <table id="board">
+      <tr>
+        <td class="item00 col0"></td>
+        <td class="item01 col1"></td>
+        <td class="item02 col2"></td>
+        <td class="item03 col3"></td>
+        <td class="item04 col4"></td>
+        <td class="item05 col5"></td>
+        <td class="item06 col6"></td>
+      </tr>
+      <tr>
+        <td class="item10 col0"></td>
+        <td class="item11 col1"></td>
+        <td class="item12 col2"></td>
+        <td class="item13 col3"></td>
+        <td class="item14 col4"></td>
+        <td class="item15 col5"></td>
+        <td class="item16 col6"></td>
+      </tr>
+      <tr>
+        <td class="item20 col0"></td>
+        <td class="item21 col1"></td>
+        <td class="item22 col2"></td>
+        <td class="item23 col3"></td>
+        <td class="item24 col4"></td>
+        <td class="item25 col5"></td>
+        <td class="item26 col6"></td>
+      </tr>
+      <tr>
+        <td class="item30 col0"></td>
+        <td class="item31 col1"></td>
+        <td class="item32 col2"></td>
+        <td class="item33 col3"></td>
+        <td class="item34 col4"></td>
+        <td class="item35 col5"></td>
+        <td class="item36 col6"></td>
+      </tr>
+      <tr>
+        <td class="item40 col0"></td>
+        <td class="item41 col1"></td>
+        <td class="item42 col2"></td>
+        <td class="item43 col3"></td>
+        <td class="item44 col4"></td>
+        <td class="item45 col5"></td>
+        <td class="item46 col6"></td>
+      </tr>
+      <tr>
+        <td class="item50 col0"></td>
+        <td class="item51 col1"></td>
+        <td class="item52 col2"></td>
+        <td class="item53 col3"></td>
+        <td class="item54 col4"></td>
+        <td class="item55 col5"></td>
+        <td class="item56 col6"></td>
+      </tr>
+    </table>
 
-  <body id="body2">
-    <div class="container">
-      <div id="buttons1">
-        <form action="games.html">
-          <input type="submit" class="op1" value="PLAY Against the Computer" />
-        </form>
-
-        <form action="games.html">
-          <input type="hidden" name="twoPlayer" value="true" />
-          <input
-            type="submit"
-            class="op1"
-            onclick="formsub()"
-            value="PLAY With a Friend"
-          />
-        </form>
-      </div>
+    <div id="buttons">
+      <input id="reset" type="button" value="Reset Game" />
     </div>
   </body>
 </html>

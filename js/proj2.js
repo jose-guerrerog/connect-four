@@ -178,11 +178,6 @@ const minimax = function (player, depth, ii, ij) {
   return move;
 };
 
-function formsub() {
-  player2 = true;
-  return false;
-}
-
 $(document).ready(function () {
   var player = 1; /// human player
   var turns = 1; /// display "X" in the first turn
@@ -209,23 +204,6 @@ $(document).ready(function () {
         }
       }
 
-      if (player2 === true) {
-        turns++;
-        if (turns % 2 === 0) return;
-
-        $(`.item${index_x}${index_y}`).addClass("red");
-        Board[index_x][index_y] = "O";
-
-        position[index_y]--;
-
-        let m2 = checkForWinner(index_x, index_y);
-
-        if (m2 === "O") {
-          alert("Player 2 won");
-          flag = false;
-        }
-        return;
-      }
       // debugger;
       let answer = minimax("computer", 0, 0, 0);
 
