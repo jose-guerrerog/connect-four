@@ -7,6 +7,15 @@
     <script src="js/proj2.js"></script>
   </head>
   <body id="body1">
+    <dialog id="main-dialog">
+      <div id="main-text">
+        <p id="text"></p>
+      </div>
+      <form method="dialog">
+        <input type="button" id="close-dialog"></button>
+      </form>
+    </dialog>
+    <div id="overlay"></div>
     <table id="board">
       <tr>
         <td class="item00 col0"></td>
@@ -63,9 +72,7 @@
         <td class="item56 col6"></td>
       </tr>
     </table>
+    <audio src="audio/game.mp3" id='audio_in' type="mp3"></audio>
 
-    <div id="buttons">
-      <input id="reset" type="button" value="Reset Game" />
-    </div>
   </body>
 </html>

@@ -34,6 +34,11 @@ const init_boards = function () {
 
 init_boards();
 
+function formsub() {
+  $("#audio_in").get(0).play();
+  $("#audio_in").prop("volume", 0).animate({ volume: 0.4 }, 8000);
+}
+
 const checkForWinner = function (ii, ij) {
   for (
     let i = ii - 3;
@@ -48,7 +53,13 @@ const checkForWinner = function (ii, ij) {
       Board[i + 2][ij] === Board[i + 3][ij] &&
       Board[i + 3][ij] !== "-"
     ) {
-      return Board[ii][ij];
+      return {
+        player: Board[ii][ij],
+        point1: { x: i, y: ij },
+        point2: { x: i + 1, y: ij },
+        point3: { x: i + 2, y: ij },
+        point4: { x: i + 3, y: ij },
+      };
     }
   }
 
@@ -68,7 +79,13 @@ const checkForWinner = function (ii, ij) {
         Board[i + 2][j + 2] === Board[i + 3][j + 3] &&
         Board[i + 3][j + 3] !== "-"
       ) {
-        return Board[ii][ij];
+        return {
+          player: Board[ii][ij],
+          point1: { x: i, y: j },
+          point2: { x: i + 1, y: j + 1 },
+          point3: { x: i + 2, y: j + 2 },
+          point4: { x: i + 3, y: j + 3 },
+        };
       }
     }
   }
@@ -89,7 +106,13 @@ const checkForWinner = function (ii, ij) {
         Board[i - 2][j + 2] === Board[i - 3][j + 3] &&
         Board[i - 3][j + 3] !== "-"
       ) {
-        return Board[ii][ij];
+        return {
+          player: Board[ii][ij],
+          point1: { x: i, y: j },
+          point2: { x: i - 1, y: j + 1 },
+          point3: { x: i - 2, y: j + 2 },
+          point4: { x: i - 3, y: j + 3 },
+        };
       }
     }
   }
@@ -107,7 +130,13 @@ const checkForWinner = function (ii, ij) {
       Board[ii][j + 2] === Board[ii][j + 3] &&
       Board[ii][j + 3] !== "-"
     ) {
-      return Board[ii][ij];
+      return {
+        player: Board[ii][ij],
+        point1: { x: ii, y: j },
+        point2: { x: ii, y: j + 1 },
+        point3: { x: ii, y: j + 2 },
+        point4: { x: ii, y: j + 3 },
+      };
     }
   }
 
@@ -134,8 +163,8 @@ const minimax = function (player, depth, ii, ij) {
   if (depth !== 0) {
     let n = checkForWinner(ii, ij);
     if (n != 0) {
-      if (n === "X") return { score: depth - 10 };
-      if (n === "O") return { score: 10 - depth };
+      if (n?.player === "X") return { score: depth - 10 };
+      if (n?.player === "O") return { score: 10 - depth };
     } else {
       if (spots.length === 0) {
         return { score: 0 };
@@ -179,7 +208,6 @@ const minimax = function (player, depth, ii, ij) {
 };
 
 $(document).ready(function () {
-  var player = 1; /// human player
   var turns = 1; /// display "X" in the first turn
 
   $("#board tr td").click(function () {
@@ -197,14 +225,28 @@ $(document).ready(function () {
 
         let m1 = checkForWinner(index_x, index_y);
 
-        if (m1 === "X") {
-          alert("Player 1 won");
+        if (m1 && m1.player === "X") {
+          const { point1, point2, point3, point4 } = m1;
+
+          $("#text")
+            .append("You won. Would you like to try again?")
+            .attr("value");
+          $("#close-dialog").attr("value", "Try again");
+
+          $("#main-dialog").show();
+          $("#overlay").show();
+
+          $("#audio_in").get(0).pause();
+
           flag = false;
+          $(`.item${point1.x}${point1.y}`).addClass("green");
+          $(`.item${point2.x}${point2.y}`).addClass("green");
+          $(`.item${point3.x}${point3.y}`).addClass("green");
+          $(`.item${point4.x}${point4.y}`).addClass("green");
           return;
         }
       }
 
-      // debugger;
       let answer = minimax("computer", 0, 0, 0);
 
       let indice = answer.index;
@@ -212,8 +254,6 @@ $(document).ready(function () {
       let indicej = indice % columns;
       let indicei = (indice - indicej) / columns;
 
-      /*    $('td').eq(indice).append("O");
-        console.log(`.item${indicei}${indicej}`);*/
       $(`.item${indicei}${indicej}`).addClass("red");
 
       Board[indicei][indicej] = "O";
@@ -222,8 +262,19 @@ $(document).ready(function () {
       let m = checkForWinner(indicei, indicej);
 
       if (m !== 0) {
+        const { point1, point2, point3, point4 } = m;
         flag = false;
-        alert("CPU won");
+        $(`.item${point1.x}${point1.y}`).addClass("green");
+        $(`.item${point2.x}${point2.y}`).addClass("green");
+        $(`.item${point3.x}${point3.y}`).addClass("green");
+        $(`.item${point4.x}${point4.y}`).addClass("green");
+        $("#audio_in").get(0).pause();
+
+        $("#main-dialog").attr("open", true);
+        $("#overlay").show();
+
+        $("#text").text("CPU won. Would you like to try again?");
+        $("#close-dialog").attr("value", "Try again");
       }
     }
   });
@@ -238,12 +289,24 @@ $(document).ready(function () {
     $(`.${c}`).css("background-color", "white");
   });
 
-  $("#reset").click(function () {
-    player = 1;
-    turns = 1;
+  $("#text").text("Are you ready to start the game?");
+  $("#close-dialog").attr("value", "Accept");
+  $("#main-dialog").show();
+  $("#main-dialog").attr("open", true);
+
+  $("#close-dialog").click(function () {
+    $("#main-dialog").attr("open", false);
+    $("#main-dialog").hide();
+
+    $("#audio_in").get(0).play();
+    $("#audio_in").prop("volume", 0).animate({ volume: 0.4 }, 8000);
+    $("#overlay").hide();
+
     flag = true;
     $("td").empty();
     init_boards();
-    $("td").removeClass("yellow").removeClass("red");
+    $("#audio_in").get(0).play();
+    $("#audio_in").prop("volume", 0).animate({ volume: 0.4 }, 8000);
+    $("td").removeClass("yellow").removeClass("red").removeClass("green");
   });
 });
