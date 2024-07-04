@@ -234,7 +234,7 @@ $(document).ready(function () {
             .attr("value");
           $("#close-dialog").attr("value", "Try again");
 
-         dialog.show()
+          $("#main-dialog").show()
           $("#overlay").show();
 
           $("#audio_in").get(0).pause();
