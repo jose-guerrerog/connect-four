@@ -209,6 +209,7 @@ const minimax = function (player, depth, ii, ij) {
 
 $(document).ready(function () {
   var turns = 1; /// display "X" in the first turn
+  const dialog = document.getElementById("main-dialog");
 
   $("#board tr td").click(function () {
     if ($(this).text() === "" && flag) {
@@ -233,7 +234,7 @@ $(document).ready(function () {
             .attr("value");
           $("#close-dialog").attr("value", "Try again");
 
-          $("#main-dialog").show();
+         dialog.show()
           $("#overlay").show();
 
           $("#audio_in").get(0).pause();
@@ -269,8 +270,8 @@ $(document).ready(function () {
         $(`.item${point3.x}${point3.y}`).addClass("green");
         $(`.item${point4.x}${point4.y}`).addClass("green");
         $("#audio_in").get(0).pause();
+        $("#main-dialog").show()
 
-        $("#main-dialog").attr("open", true);
         $("#overlay").show();
 
         $("#text").text("CPU won. Would you like to try again?");
@@ -291,13 +292,10 @@ $(document).ready(function () {
 
   $("#text").text("Are you ready to start the game?");
   $("#close-dialog").attr("value", "Accept");
-  $("#main-dialog").show();
-  $("#main-dialog").attr("open", true);
+  dialog.show()
 
   $("#close-dialog").click(function () {
-    $("#main-dialog").attr("open", false);
-    $("#main-dialog").hide();
-
+     $("#main-dialog").hide()
     $("#audio_in").get(0).play();
     $("#audio_in").prop("volume", 0).animate({ volume: 0.4 }, 8000);
     $("#overlay").hide();

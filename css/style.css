@@ -54,6 +54,14 @@ form {
   z-index: 1;
 }
 
+.no-titlebar .ui-dialog-no-titlebar {
+  display: none !important;
+}
+
+.ui-resizable-s {
+  display: none !important;
+}
+
 #body2 {
   background-image: url("../images/connect-four.jpg");
   -webkit-background-size: cover;
